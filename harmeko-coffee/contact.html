@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Harmeko Coffee</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Contact Page Specific Styles */
+        .contact-hero {
+            height: 50vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/contact-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .contact-hero h1 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .contact-info-section {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .contact-info-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            padding: 0 20px;
+        }
+        
+        .contact-info-item {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            padding: 40px 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .contact-info-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .contact-info-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info-item p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+        
+        .contact-info-item a {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .form-section {
+            padding: 80px 0;
+        }
+        
+        .form-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            padding: 0 20px;
+        }
+        
+        .form-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .form-info h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .form-info p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .office-hours {
+            margin-top: 30px;
+        }
+        
+        .office-hours h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .hours-list {
+            list-style: none;
+        }
+        
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            color: var(--text-light);
+        }
+        
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: var(--font-secondary);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(138, 90, 68, 0.2);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .form-group .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .success-message {
+            padding: 20px;
+            background-color: #d4edda;
+            color: #155724;
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+        
+        .map-section {
+            height: 500px;
+            position: relative;
+        }
+        
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .map-notice {
+            background-color: white;
+            padding: 20px 30px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .contact-info-item {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Harmeko</h1>
+                <span>COFFEE</span>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="#" class="reservation-btn">Reservations</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="contact-hero">
+        <div class="hero-content">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you. Reach out for reservations, inquiries, or just to say hello.</p>
+        </div>
+    </section>
+
+    <section class="contact-info-section">
+        <div class="contact-info-content">
+            <div class="contact-info-item">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Visit Us</h3>
+                <p>123 Elegance Avenue<br>Luxury District<br>Metropolis, CA 90210</p>
+                <a href="https://maps.google.com" target="_blank">Get Directions</a>
+            </div>
+            <div class="contact-info-item">
+                <div class="contact-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <h3>Call Us</h3>
+                <p>For Reservations & Inquiries</p>
+                <a href="tel:+15551234567">(555) 123-4567</a>
+            </div>
+            <div class="contact-info-item">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email Us</h3>
+                <p>For Feedback & Business Inquiries</p>
+                <a href="mailto:info@harmekocoffee.com">info@harmekocoffee.com</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section">
+        <div class="form-content">
+            <div class="form-info">
+                <h2>Get in Touch</h2>
+                <p>We value your feedback and are always eager to hear from our guests. Whether you have a question, suggestion, or just want to share your experience, please feel free to reach out to us.</p>
+                <p>For reservation requests, please include your preferred date, time, and party size, and we'll get back to you as soon as possible to confirm availability.</p>
+                
+                <div class="office-hours">
+                    <h3>Opening Hours</h3>
+                    <ul class="hours-list">
+                        <li><span>Monday - Friday</span> <span>7:00 AM - 11:00 PM</span></li>
+                        <li><span>Saturday</span> <span>8:00 AM - 12:00 AM</span></li>
+                        <li><span>Sunday</span> <span>8:00 AM - 10:00 PM</span></li>
+                        <li><span>Happy Hour</span> <span>4:00 PM - 7:00 PM Daily</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="reservation">Reservation Request</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="catering">Catering Inquiry</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn primary-btn" style="width: 100%;">Send Message</button>
+                    </div>
+                    
+                    <div class="success-message" id="formSuccess">
+                        <i class="fas fa-check-circle" style="font-size: 24px; margin-bottom: 10px;"></i>
+                        <h3>Thank You!</h3>
+                        <p>Your message has been sent successfully. We'll get back to you soon.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <div class="map-overlay" id="mapOverlay">
+            <div class="map-notice">
+                <i class="fas fa-map-marker-alt"></i> Click to load the map
+            </div>
+        </div>
+        <iframe id="googleMap" src="about:blank" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>Harmeko</h2>
+                <span>COFFEE</span>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Elegance Avenue</p>
+                <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                <p><i class="fas fa-envelope"></i> info@harmekocoffee.com</p>
+            </div>
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Harmeko Coffee. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Form validation
+                let isValid = true;
+                const name = document.getElementById('name');
+                const email = document.getElementById('email');
+                const subject = document.getElementById('subject');
+                const message = document.getElementById('message');
+                
+                // Clear previous error messages
+                document.querySelectorAll('.error-message').forEach(el => el.remove());
+                
+                // Validate name
+                if (name.value.trim() === '') {
+                    isValid = false;
+                    showError(name, 'Please enter your name');
+                }
+                
+                // Validate email
+                if (email.value.trim() === '') {
+                    isValid = false;
+                    showError(email, 'Please enter your email');
+                } else if (!validateEmail(email.value)) {
+                    isValid = false;
+                    showError(email, 'Please enter a valid email address');
+                }
+                
+                // Validate subject
+                if (subject.value === '') {
+                    isValid = false;
+                    showError(subject, 'Please select a subject');
+                }
+                
+                // Validate message
+                if (message.value.trim() === '') {
+                    isValid = false;
+                    showError(message, 'Please enter your message');
+                }
+                
+                // If form is valid, submit it
+                if (isValid) {
+                    // In a real application, you would send this data to your server
+                    console.log('Form submitted:', {
+                        name: name.value,
+                        email: email.value,
+                        phone: document.getElementById('phone').value,
+                        subject: subject.value,
+                        message: message.value
+                    });
+                    
+                    // Show success message
+                    formSuccess.style.display = 'block';
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        formSuccess.style.display = 'none';
+                    }, 5000);
+                }
+            });
+        }
+        
+        // Show error message
+        function showError(input, message) {
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'error-message';
+            errorMessage.textContent = message;
+            input.parentNode.appendChild(errorMessage);
+            input.style.borderColor = '#e74c3c';
+            
+            // Remove error on input focus
+            input.addEventListener('focus', function() {
+                this.style.borderColor = '';
+                if (errorMessage.parentNode) {
+                    errorMessage.parentNode.removeChild(errorMessage);
+                }
+            });
+        }
+        
+        // Email validation
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+        
+        // Google Map
+        const mapOverlay = document.getElementById('mapOverlay');
+        const googleMap = document.getElementById('googleMap');
+        
+        mapOverlay.addEventListener('click', function() {
+            googleMap.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3306.3335611287394!2d-118.37529548478737!3d34.0194836806044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b8df7eedf1cd%3A0x93c8a3cc367bef24!2sLos%20Angeles%2C%20CA%2090019!5e0!3m2!1sen!2sus!4v1637103988319!5m2!1sen!2sus";
+            this.style.display = 'none';
+        });
+    </script>
+</body>
+</html> 

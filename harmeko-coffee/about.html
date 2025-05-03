@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Harmeko Coffee</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* About Page Specific Styles */
+        .about-hero {
+            height: 60vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/about-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .about-hero h1 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .about-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .story-section {
+            padding: 80px 0;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .story-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+            padding: 0 20px;
+        }
+        
+        .story-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .story-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .story-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .story-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .story-image {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background-image: url('images/story.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+        }
+        
+        .values-section {
+            background-color: var(--light-color);
+            padding: 80px 0;
+        }
+        
+        .values-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .values-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .values-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .values-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .values-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .value-item {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .value-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .value-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .value-item p {
+            color: var(--text-light);
+        }
+        
+        .team-section {
+            padding: 80px 0;
+        }
+        
+        .team-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .team-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .team-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .team-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .team-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .team-member {
+            text-align: center;
+        }
+        
+        .member-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            margin: 0 auto 20px;
+            border: 5px solid var(--light-color);
+        }
+        
+        .team-member h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .member-title {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .member-bio {
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+        
+        .member-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .member-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background-color: var(--light-color);
+            border-radius: 50%;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .member-social a:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .stats-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0;
+        }
+        
+        .stats-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            text-align: center;
+        }
+        
+        .stat-item {
+            flex: 1;
+            min-width: 200px;
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            font-family: var(--font-primary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-content p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .story-image, .story-text {
+                flex: 100%;
+            }
+            
+            .story-image {
+                height: 300px;
+                order: -1;
+            }
+            
+            .stat-item {
+                min-width: 150px;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .stat-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Harmeko</h1>
+                <span>COFFEE</span>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#" class="reservation-btn">Reservations</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="about-hero">
+        <div class="hero-content">
+            <h1>Our Story</h1>
+            <p>Discover the passion and dedication behind Harmeko Coffee's exceptional coffee experience</p>
+        </div>
+    </section>
+
+    <section class="story-section">
+        <div class="story-content">
+            <div class="story-text">
+                <h2>How It All Started</h2>
+                <p>Founded in 2015 by master barista James Harmeko, our coffee shop began with a simple mission: to serve exceptional coffee in an elegant setting. James, who spent over a decade studying coffee cultivation and roasting techniques across Ethiopia, Colombia, and Italy, returned home with a vision to create something truly special.</p>
+                <p>What started as a small artisanal coffee bar quickly gained recognition for its extraordinary flavor profiles and sophisticated ambiance. The combination of carefully sourced beans, meticulous brewing methods, and unwavering attention to detail earned Harmeko Coffee a dedicated following among coffee enthusiasts and gastronomes alike.</p>
+                <p>As our reputation grew, so did our offerings. We expanded our menu to include gourmet cuisine that complemented our coffee, creating a harmonious culinary experience that delights all the senses.</p>
+            </div>
+            <div class="story-image"></div>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <div class="values-content">
+            <div class="values-header">
+                <h2>Our Core Values</h2>
+                <p>The principles that guide everything we do at Harmeko Coffee</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Excellence</h3>
+                    <p>We pursue excellence in every aspect of our business, from sourcing the finest beans to crafting the perfect cup. Mediocrity has no place in our establishment.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Ethical Sourcing</h3>
+                    <p>We maintain direct relationships with coffee farmers, ensuring fair compensation and sustainable practices. Our success should never come at the expense of others.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sustainability</h3>
+                    <p>From eco-friendly packaging to energy-efficient operations, we strive to minimize our environmental footprint while maximizing positive impact.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community</h3>
+                    <p>We believe in creating a welcoming space where people can connect, converse, and create memories. Our café is more than a business; it's a community.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>While respecting traditional coffee craft, we continuously explore new techniques, flavors, and experiences to surprise and delight our guests.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Passion</h3>
+                    <p>Above all, we are driven by passion—for exceptional coffee, culinary artistry, and creating moments of joy for everyone who walks through our doors.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="team-content">
+            <div class="team-header">
+                <h2>Meet Our Team</h2>
+                <p>The talented individuals who make the Harmeko Coffee experience possible</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image" style="background-image: url('images/team-1.jpg');"></div>
+                    <h3>James Harmeko</h3>
+                    <div class="member-title">Founder & Master Barista</div>
+                    <p class="member-bio">With 15 years of experience in specialty coffee, James combines technical expertise with artistic sensibility.</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image" style="background-image: url('images/team-2.jpg');"></div>
+                    <h3>Sophia Chen</h3>
+                    <div class="member-title">Executive Chef</div>
+                    <p class="member-bio">Trained in Paris, Sophia creates culinary masterpieces that perfectly complement our coffee offerings.</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image" style="background-image: url('images/team-3.jpg');"></div>
+                    <h3>Marcus Johnson</h3>
+                    <div class="member-title">Coffee Roaster</div>
+                    <p class="member-bio">Marcus ensures each batch of beans is roasted to perfection, bringing out their unique character and complexity.</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image" style="background-image: url('images/team-4.jpg');"></div>
+                    <h3>Olivia Martinez</h3>
+                    <div class="member-title">Pastry Chef</div>
+                    <p class="member-bio">Olivia's artisanal desserts and pastries add the perfect sweet complement to our beverage menu.</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-content">
+            <div class="stat-item">
+                <div class="stat-number">8</div>
+                <div class="stat-text">Years of Excellence</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">12</div>
+                <div class="stat-text">Coffee Origins</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24</div>
+                <div class="stat-text">Signature Drinks</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">15K+</div>
+                <div class="stat-text">Happy Customers</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Join Our Coffee Journey</h2>
+            <p>Experience the extraordinary blend of tradition, innovation, and passion that defines Harmeko Coffee. Whether you're a coffee connoisseur or simply seeking a memorable dining experience, we invite you to be part of our story.</p>
+            <a href="contact.html" class="btn primary-btn">Visit Us Today</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>Harmeko</h2>
+                <span>COFFEE</span>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Elegance Avenue</p>
+                <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                <p><i class="fas fa-envelope"></i> info@harmekocoffee.com</p>
+            </div>
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Harmeko Coffee. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu | Harmeko Coffee</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Menu Page Specific Styles */
+        .menu-hero {
+            height: 60vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/menu-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .menu-hero h1 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .menu-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .menu-tabs {
+            background-color: white;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            position: sticky;
+            top: 70px;
+            z-index: 100;
+        }
+        
+        .menu-tab {
+            padding: 10px 25px;
+            margin: 0 10px;
+            font-family: var(--font-primary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .menu-tab.active, .menu-tab:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .menu-section {
+            padding: 80px 0;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .menu-section:nth-child(even) {
+            background-color: var(--light-color);
+        }
+        
+        .menu-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .menu-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+        
+        .menu-item {
+            display: flex;
+            margin-bottom: 30px;
+        }
+        
+        .menu-item-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .menu-item-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .menu-item-content p {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+        
+        .menu-item-price {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .menu-item-badges {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .menu-badge {
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .menu-badge.signature {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .menu-badge.new {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .menu-badge.vegan {
+            background-color: #20c997;
+            color: white;
+        }
+        
+        .menu-badge.gluten-free {
+            background-color: #6610f2;
+            color: white;
+        }
+        
+        .menu-note {
+            text-align: center;
+            max-width: 700px;
+            margin: 50px auto 0;
+            padding: 20px;
+            border: 1px solid var(--secondary-color);
+            border-radius: 10px;
+            background-color: rgba(212, 181, 158, 0.1);
+        }
+        
+        .menu-note p {
+            color: var(--text-color);
+            font-style: italic;
+        }
+        
+        .menu-cta {
+            text-align: center;
+            margin: 80px 0 40px;
+        }
+        
+        .menu-cta h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-tabs {
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding: 15px 10px;
+                top: 60px;
+            }
+            
+            .menu-tab {
+                padding: 8px 15px;
+                margin: 0 5px;
+                white-space: nowrap;
+            }
+            
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+            
+            .menu-item-image {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Harmeko</h1>
+                <span>COFFEE</span>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html" class="active">Menu</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#" class="reservation-btn">Reservations</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="menu-hero">
+        <div class="hero-content">
+            <h1>Our Menu</h1>
+            <p>Discover our artisanal coffee blends and gourmet cuisine, crafted with passion and the finest ingredients</p>
+        </div>
+    </section>
+
+    <div class="menu-tabs">
+        <div class="menu-tab active" data-target="coffee">Coffee</div>
+        <div class="menu-tab" data-target="breakfast">Breakfast</div>
+        <div class="menu-tab" data-target="lunch">Lunch</div>
+        <div class="menu-tab" data-target="desserts">Desserts</div>
+        <div class="menu-tab" data-target="drinks">Drinks</div>
+    </div>
+
+    <section class="menu-section" id="coffee">
+        <h2>Coffee</h2>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/coffee-1.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Signature Espresso <span class="menu-item-price">$4.50</span></h3>
+                    <p>Our house blend with notes of chocolate, hazelnut, and caramel</p>
+                    <div class="menu-item-badges">
+                        <span class="menu-badge signature">Signature</span>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/coffee-2.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Pour Over <span class="menu-item-price">$5.50</span></h3>
+                    <p>Single-origin coffee brewed to perfection, varies by season</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/coffee-3.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Cappuccino <span class="menu-item-price">$5.00</span></h3>
+                    <p>Equal parts espresso, steamed milk, and silky foam</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/coffee-4.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Flat White <span class="menu-item-price">$5.00</span></h3>
+                    <p>Double espresso with velvety microfoam milk</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/coffee-5.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Truffle Latte <span class="menu-item-price">$7.50</span></h3>
+                    <p>Espresso with steamed milk, infused with black truffle and gold flakes</p>
+                    <div class="menu-item-badges">
+                        <span class="menu-badge signature">Signature</span>
+                        <span class="menu-badge new">New</span>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/coffee-6.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Cold Brew <span class="menu-item-price">$5.50</span></h3>
+                    <p>Slow-steeped for 24 hours for a smooth, rich flavor</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/coffee-7.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Affogato <span class="menu-item-price">$6.50</span></h3>
+                    <p>Espresso poured over artisanal vanilla gelato</p>
+                    <div class="menu-item-badges">
+                        <span class="menu-badge signature">Signature</span>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/coffee-8.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Mocha <span class="menu-item-price">$5.50</span></h3>
+                    <p>Espresso with steamed milk and rich chocolate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu-section" id="breakfast" style="display: none;">
+        <h2>Breakfast</h2>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/breakfast-1.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Avocado Toast <span class="menu-item-price">$12.00</span></h3>
+                    <p>Artisanal sourdough, smashed avocado, poached eggs, cherry tomatoes, microgreens</p>
+                    <div class="menu-item-badges">
+                        <span class="menu-badge vegan">Vegan Option</span>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/breakfast-2.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Belgian Waffles <span class="menu-item-price">$14.00</span></h3>
+                    <p>Topped with fresh berries, whipped cream, and maple syrup</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/breakfast-3.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Eggs Benedict <span class="menu-item-price">$16.00</span></h3>
+                    <p>Poached eggs, Canadian bacon, English muffin, hollandaise sauce, served with roasted potatoes</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/breakfast-4.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Acai Bowl <span class="menu-item-price">$13.00</span></h3>
+                    <p>Acai berry blend topped with granola, fresh fruits, and honey</p>
+                    <div class="menu-item-badges">
+                        <span class="menu-badge vegan">Vegan</span>
+                        <span class="menu-badge gluten-free">Gluten-Free</span>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/breakfast-5.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>French Toast <span class="menu-item-price">$14.00</span></h3>
+                    <p>Brioche bread, cinnamon, fresh berries, and powdered sugar</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/breakfast-6.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Truffle Mushroom Omelette <span class="menu-item-price">$18.00</span></h3>
+                    <p>Free-range eggs, wild mushrooms, truffle oil, Gruyère cheese, served with toast</p>
+                    <div class="menu-item-badges">
+                        <span class="menu-badge signature">Signature</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu-section" id="lunch" style="display: none;">
+        <h2>Lunch</h2>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/lunch-1.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Grilled Salmon <span class="menu-item-price">$24.00</span></h3>
+                    <p>Norwegian salmon, quinoa, roasted vegetables, lemon dill sauce</p>
+                    <div class="menu-item-badges">
+                        <span class="menu-badge gluten-free">Gluten-Free</span>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/lunch-2.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Truffle Pasta <span class="menu-item-price">$22.00</span></h3>
+                    <p>House-made fettuccine, wild mushrooms, black truffle, Parmigiano-Reggiano</p>
+                    <div class="menu-item-badges">
+                        <span class="menu-badge signature">Signature</span>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/lunch-3.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Gourmet Burger <span class="menu-item-price">$19.00</span></h3>
+                    <p>Wagyu beef, caramelized onions, aged cheddar, truffle aioli, brioche bun, served with fries</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/lunch-4.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Mediterranean Bowl <span class="menu-item-price">$16.00</span></h3>
+                    <p>Quinoa, hummus, falafel, cherry tomatoes, cucumber, olives, feta, tahini dressing</p>
+                    <div class="menu-item-badges">
+                        <span class="menu-badge vegan">Vegan Option</span>
+                        <span class="menu-badge gluten-free">Gluten-Free</span>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/lunch-5.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Lobster Bisque <span class="menu-item-price">$14.00</span></h3>
+                    <p>Creamy lobster soup with brandy, served with garlic crostini</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/lunch-6.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Gourmet Salad <span class="menu-item-price">$17.00</span></h3>
+                    <p>Mixed greens, grilled chicken, avocado, goat cheese, candied walnuts, balsamic vinaigrette</p>
+                    <div class="menu-item-badges">
+                        <span class="menu-badge gluten-free">Gluten-Free</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu-section" id="desserts" style="display: none;">
+        <h2>Desserts</h2>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/dessert-1.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Tiramisu <span class="menu-item-price">$9.00</span></h3>
+                    <p>Layers of coffee-soaked ladyfingers and mascarpone cream</p>
+                    <div class="menu-item-badges">
+                        <span class="menu-badge signature">Signature</span>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/dessert-2.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Chocolate Fondant <span class="menu-item-price">$10.00</span></h3>
+                    <p>Warm chocolate cake with a molten center, served with vanilla ice cream</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/dessert-3.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Crème Brûlée <span class="menu-item-price">$9.00</span></h3>
+                    <p>Classic vanilla custard with a caramelized sugar crust</p>
+                    <div class="menu-item-badges">
+                        <span class="menu-badge gluten-free">Gluten-Free</span>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/dessert-4.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>New York Cheesecake <span class="menu-item-price">$9.00</span></h3>
+                    <p>Creamy cheesecake with a graham cracker crust, topped with berry compote</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu-section" id="drinks" style="display: none;">
+        <h2>Drinks</h2>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/drink-1.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Fresh Fruit Smoothie <span class="menu-item-price">$7.00</span></h3>
+                    <p>Blend of seasonal fruits, yogurt, and honey</p>
+                    <div class="menu-item-badges">
+                        <span class="menu-badge vegan">Vegan Option</span>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/drink-2.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Organic Loose Leaf Tea <span class="menu-item-price">$4.50</span></h3>
+                    <p>Selection of premium teas: green, black, herbal, and chai</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/drink-3.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Fresh Juice <span class="menu-item-price">$6.00</span></h3>
+                    <p>Freshly squeezed orange, grapefruit, or green vegetable juice</p>
+                    <div class="menu-item-badges">
+                        <span class="menu-badge vegan">Vegan</span>
+                        <span class="menu-badge gluten-free">Gluten-Free</span>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image" style="background-image: url('images/drink-4.jpg');"></div>
+                <div class="menu-item-content">
+                    <h3>Signature Mocktail <span class="menu-item-price">$8.00</span></h3>
+                    <p>Elderflower, cucumber, mint, lime, and soda water</p>
+                    <div class="menu-item-badges">
+                        <span class="menu-badge signature">Signature</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="menu-note">
+        <p>* All our ingredients are locally sourced and organic when available. Please inform your server of any allergies or dietary restrictions.</p>
+    </div>
+
+    <div class="menu-cta">
+        <h3>Enjoy Our Special Menu in an Elegant Setting</h3>
+        <a href="#" class="btn primary-btn reservation-btn">Make a Reservation</a>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>Harmeko</h2>
+                <span>COFFEE</span>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Elegance Avenue</p>
+                <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                <p><i class="fas fa-envelope"></i> info@harmekocoffee.com</p>
+            </div>
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Harmeko Coffee. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Menu Tab Functionality
+        const menuTabs = document.querySelectorAll('.menu-tab');
+        const menuSections = document.querySelectorAll('.menu-section');
+        
+        menuTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                menuTabs.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Hide all menu sections
+                menuSections.forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Show the selected menu section
+                const targetSection = document.getElementById(tab.dataset.target);
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                }
+                
+                // Smooth scroll to the menu section
+                window.scrollTo({
+                    top: document.querySelector('.menu-tabs').offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -194,6 +194,11 @@ nav {
     width: 100%;
 }
 
+/* Remove underline effect for reservation button */
+.reservation-btn::after {
+    display: none;
+}
+
 .reservation-btn {
     background-color: var(--primary-color);
     color: white !important;
